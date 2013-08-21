@@ -11,10 +11,14 @@ matrix:
         - compiler: clang
           env: AUTOTOOLS=newer
 before_install:
-  - git clone https://github.com/hcatlin/sass-spec.git
-  - git clone https://github.com/hcatlin/sassc.git
+  - git clone -b tap https://github.com/QuLogic/sass-spec.git
+  - git clone https://github.com/QuLogic/sassc.git
   - export SASS_SPEC_PATH=$TRAVIS_BUILD_DIR/sass-spec
   - export SASS_SASSC_PATH=$TRAVIS_BUILD_DIR/sassc
   - export SASS_LIBSASS_PATH=$TRAVIS_BUILD_DIR
 script: ./travis.sh
+
+branches:
+  only:
+    - travis
 
