@@ -1,15 +1,9 @@
 language: cpp
 compiler:
     - gcc
-    - clang
 env:
     - AUTOTOOLS=newer
-    - AUTOTOOLS=yes
-    - AUTOTOOLS=no
 matrix:
-    exclude:
-        - compiler: clang
-          env: AUTOTOOLS=newer
 before_install:
   - git clone -b tap https://github.com/QuLogic/sass-spec.git
   - git clone https://github.com/QuLogic/sassc.git
