@@ -77,8 +77,32 @@ the --with-sass-spec-dir=<dir> argument.
 	AC_MSG_RESULT([$use_tap])
 fi
 
+# Checks for existence of coverage tools:
+AC_ARG_ENABLE(coverage,
+	AS_HELP_STRING([--enable-coverage],
+		[enable coverage testing with gcov]),
+	[enable_cov=$enableval],
+	[enable_cov=no])
+
+if test "x$enable_cov" = "xyes"; then
+	if test "x$GXX" != "xyes"; then
+		AC_MSG_ERROR([GCC is required for --enable-coverage])
+	fi
+
+	AC_CHECK_PROG(GCOV, gcov, gcov)
+
+	# Remove all optimization flags from C[XX]FLAGS
+	changequote({,})
+	CFLAGS=`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`
+	CXXFLAGS=`echo "$CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`
+	changequote([,])
+
+	AC_SUBST(GCOV)
+fi
+
 AM_CONDITIONAL(ENABLE_TESTS, test "x$enable_tests" = "xyes")
 AM_CONDITIONAL(USE_TAP, test "x$use_tap" = "xyes")
+AM_CONDITIONAL(ENABLE_COVERAGE, test "x$enable_cov" = "xyes")
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

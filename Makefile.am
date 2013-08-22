@@ -1,5 +1,9 @@
 ACLOCAL_AMFLAGS = -I m4
 
+if ENABLE_COVERAGE
+AM_CXXFLAGS = --coverage
+endif
+
 lib_LTLIBRARIES = libsass.la
 libsass_la_SOURCES = ast.cpp bind.cpp constants.cpp context.cpp contextualize.cpp \
   copy_c_str.cpp error_handling.cpp eval.cpp expand.cpp extend.cpp file.cpp \
