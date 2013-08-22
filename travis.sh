@@ -27,7 +27,7 @@ make LOG_FLAGS=--skip VERBOSE=1 AM_COLOR_TESTS=always test
 status=$?
 
 if [ -n "$COVERAGE" ]; then
-	coveralls --exclude lib --exclude tests
+	coveralls --exclude .libs --exclude $SASS_SPEC_PATH
 fi
 
 exit $status
