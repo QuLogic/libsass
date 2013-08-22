@@ -23,7 +23,7 @@ fi
 
 set +e
 
-make LOG_FLAGS=--skip VERBOSE=1 test
+make LOG_FLAGS=--skip VERBOSE=1 AM_COLOR_TESTS=always test
 status=$?
 
 if [ -n "$COVERAGE" ]; then
