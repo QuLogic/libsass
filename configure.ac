@@ -88,6 +88,9 @@ if test "x$enable_cov" = "xyes"; then
 	if test "x$GXX" != "xyes"; then
 		AC_MSG_ERROR([GCC is required for --enable-coverage])
 	fi
+	if test "x$enable_static" != "xyes"; then
+		AC_MSG_ERROR([Static libraries are required for --enable-coverage])
+	fi
 
 	AC_CHECK_PROG(GCOV, gcov, gcov)
 

@@ -18,6 +18,9 @@ check_PROGRAMS = sassc++
 
 sassc___SOURCES = sassc++.cpp
 sassc___LDADD = libsass.la
+if ENABLE_COVERAGE
+sassc___LDFLAGS = -static
+endif
 
 if ENABLE_TESTS
 
@@ -26,6 +29,10 @@ noinst_PROGRAMS = sass-tester
 sass_tester_SOURCES = $(SASS_SASSC_PATH)/sassc.c
 sass_tester_LDADD = libsass.la
 sass_tester_LDFLAGS = -no-install
+if ENABLE_COVERAGE
+sass_tester_LDFLAGS += -static
+nodist_EXTRA_sass_tester_SOURCES = non-existent-file-to-force-CXX-linking.cxx
+endif
 
 TESTS = \
 	$(SASS_SPEC_PATH)/spec/basic \
