@@ -4,6 +4,7 @@ Libsass
 by Aaron Leung and Hampton Catlin (@hcatlin)
 
 [![Build Status](https://travis-ci.org/hcatlin/libsass.png?branch=master)](https://travis-ci.org/hcatlin/libsass)
+[![Coverage Status](https://coveralls.io/repos/QuLogic/libsass/badge.png)](https://coveralls.io/r/QuLogic/libsass)
 
 http://github.com/hcatlin/libsass
 
