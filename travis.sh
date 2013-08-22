@@ -17,11 +17,18 @@ if [ "x$AUTOTOOLS" == "xyes" ]; then
 	            --with-sassc-dir=$SASS_SASSC_PATH \
 	            --with-sass-spec-dir=$SASS_SPEC_PATH
 	make
+else
+	make ${SASS_SASSC_PATH}/bin/sassc
 fi
 
+set +e
+
 make LOG_FLAGS=--skip VERBOSE=1 test
+status=$?
 
 if [ -n "$COVERAGE" ]; then
 	coveralls --exclude lib --exclude tests
 fi
+
+exit $status
 
